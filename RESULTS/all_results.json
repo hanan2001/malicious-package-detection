@@ -1,0 +1,2200 @@
+{
+  "config": {
+    "targets": {
+      "npm": {
+        "1": 4500,
+        "0": 4000
+      },
+      "pypi": {
+        "1": 998,
+        "0": 1000
+      }
+    },
+    "attempt_multiplier": {
+      "npm": 12,
+      "pypi": 25
+    },
+    "benign_attempt_multiplier": 6,
+    "name_sim": 0.85,
+    "test_frac": 0.25,
+    "val_frac": 0.2,
+    "var_thr": 0.01,
+    "mi_topk": 100,
+    "boruta_iter": 50,
+    "boruta_alpha": 0.05,
+    "rfe_target": 30,
+    "rfe_step": 5,
+    "corr_cut": 0.85,
+    "n_boot": 1000,
+    "prevalences": [
+      0.01,
+      0.001,
+      0.0001
+    ],
+    "alert_budget_10k": 50,
+    "min_recall": 0.8,
+    "final_feature_budget": 18,
+    "drop_single_ecosystem_features": true,
+    "budget_sweep": [
+      5,
+      10,
+      15,
+      18,
+      25,
+      30,
+      40
+    ],
+    "n_random_baseline": 20,
+    "n_stability_runs": 10,
+    "min_malicious_for_window": 50,
+    "str_cap": 200,
+    "size_cap": 50
+  },
+  "collection": {
+    "loaded_from_cache": true
+  },
+  "feature_space": {
+    "total": 464,
+    "vman": 414,
+    "pit": 42,
+    "cur": 8
+  },
+  "dataset": {
+    "n_versions": 3330,
+    "n_packages": 1814,
+    "n_groups": 1490,
+    "largest_group": 137,
+    "similar_name_pairs": 11,
+    "windows": {
+      "npm": [
+        "2024-03-22",
+        "2026-08-05"
+      ],
+      "pypi": [
+        "2022-01-10",
+        "2026-07-19"
+      ]
+    },
+    "composition": {
+      "npm_0": 413,
+      "npm_1": 2092,
+      "pypi_0": 746,
+      "pypi_1": 79
+    }
+  },
+  "protocol_A": {
+    "selection_log": {
+      "initial": 464,
+      "variance": 145,
+      "mutual_info": 100,
+      "boruta": 85,
+      "rfe": 30,
+      "corr_prune": 25,
+      "budget": 18
+    },
+    "selected": [
+      "pit_days_since_first",
+      "vman_package_url_ent",
+      "cur_days_since_modified",
+      "pit_has_install_hook",
+      "pit_has_repository",
+      "vman_keywords_list_size",
+      "cur_n_releases_now",
+      "pit_description_entropy",
+      "vman_bin_dict_size",
+      "pit_name_n_hyphens",
+      "vman_maintainers_list_size",
+      "vman_description_len",
+      "pit_std_gap_days",
+      "vman_summary_len",
+      "pit_long_description_len",
+      "pit_median_gap_days",
+      "pit_description_len",
+      "pit_n_dependencies"
+    ],
+    "n_selected": 18,
+    "table": [
+      {
+        "protocol": "A_original",
+        "model": "CatBoost",
+        "train_accuracy": 1.0,
+        "n": 833,
+        "TN": 285,
+        "FP": 5,
+        "FN": 11,
+        "TP": 532,
+        "test_accuracy": 0.9807923169267707,
+        "test_precision_pos": 0.9906890130353817,
+        "test_recall_pos": 0.9797421731123389,
+        "test_f1_pos": 0.9851851851851852,
+        "test_mcc": 0.9580033146482267,
+        "test_auc_roc": 0.9933574649139518,
+        "test_au_pr": 0.9970218536772018,
+        "au_pr_baseline": 0.6518607442977191,
+        "test_specificity": 0.9827586206896551,
+        "test_fpr": 0.017241379310344827,
+        "test_brier": 0.019256577660145255,
+        "threshold": 0.5,
+        "overfit_gap": 0.019207683073229287
+      },
+      {
+        "protocol": "A_original",
+        "model": "RandomForest",
+        "train_accuracy": 0.9951942330796957,
+        "n": 833,
+        "TN": 288,
+        "FP": 2,
+        "FN": 18,
+        "TP": 525,
+        "test_accuracy": 0.9759903961584634,
+        "test_precision_pos": 0.9962049335863378,
+        "test_recall_pos": 0.9668508287292817,
+        "test_f1_pos": 0.9813084112149533,
+        "test_mcc": 0.9486007000432104,
+        "test_auc_roc": 0.991153870578523,
+        "test_au_pr": 0.9962772686383689,
+        "au_pr_baseline": 0.6518607442977191,
+        "test_specificity": 0.993103448275862,
+        "test_fpr": 0.006896551724137931,
+        "test_brier": 0.023484430724576223,
+        "threshold": 0.5,
+        "overfit_gap": 0.019203836921232287
+      },
+      {
+        "protocol": "A_original",
+        "model": "Stacking",
+        "train_accuracy": 1.0,
+        "n": 833,
+        "TN": 286,
+        "FP": 4,
+        "FN": 12,
+        "TP": 531,
+        "test_accuracy": 0.9807923169267707,
+        "test_precision_pos": 0.9925233644859813,
+        "test_recall_pos": 0.9779005524861878,
+        "test_f1_pos": 0.9851576994434137,
+        "test_mcc": 0.9581628516551352,
+        "test_auc_roc": 0.9913189813932813,
+        "test_au_pr": 0.9963648976032774,
+        "au_pr_baseline": 0.6518607442977191,
+        "test_specificity": 0.9862068965517241,
+        "test_fpr": 0.013793103448275862,
+        "test_brier": 0.017901835401512002,
+        "threshold": 0.5,
+        "overfit_gap": 0.019207683073229287
+      }
+    ],
+    "best_model": "CatBoost",
+    "threshold": 0.997,
+    "budget_feasible": false,
+    "message": "budget de 50 alertes/10k inatteignable a rappel >= 0.8 : minimum realisable 111 alertes/10k (rappel 0.803, 0/290 FP)",
+    "prevalence_table": [
+      {
+        "prevalence": 0.01,
+        "fpr_estimate": "point",
+        "TPR": 0.8029465930018416,
+        "FPR": 0.0,
+        "PPV": 1.0,
+        "alerts_per_10k": 80.29465930018416,
+        "true_positives_per_10k": 80.29465930018416,
+        "missed_per_10k": 19.705340699815842
+      },
+      {
+        "prevalence": 0.01,
+        "fpr_estimate": "upper95",
+        "TPR": 0.8029465930018416,
+        "FPR": 0.010344827586206896,
+        "PPV": 0.439468772483499,
+        "alerts_per_10k": 182.70845240363244,
+        "true_positives_per_10k": 80.29465930018416,
+        "missed_per_10k": 19.705340699815842
+      },
+      {
+        "prevalence": 0.001,
+        "fpr_estimate": "point",
+        "TPR": 0.8029465930018416,
+        "FPR": 0.0,
+        "PPV": 1.0,
+        "alerts_per_10k": 8.029465930018416,
+        "true_positives_per_10k": 8.029465930018416,
+        "missed_per_10k": 1.9705340699815843
+      },
+      {
+        "prevalence": 0.001,
+        "fpr_estimate": "upper95",
+        "TPR": 0.8029465930018416,
+        "FPR": 0.010344827586206896,
+        "PPV": 0.07209442750672677,
+        "alerts_per_10k": 111.37429351622531,
+        "true_positives_per_10k": 8.029465930018416,
+        "missed_per_10k": 1.9705340699815843
+      },
+      {
+        "prevalence": 0.0001,
+        "fpr_estimate": "point",
+        "TPR": 0.8029465930018416,
+        "FPR": 0.0,
+        "PPV": 1.0,
+        "alerts_per_10k": 0.8029465930018417,
+        "true_positives_per_10k": 0.8029465930018416,
+        "missed_per_10k": 0.19705340699815843
+      },
+      {
+        "prevalence": 0.0001,
+        "fpr_estimate": "upper95",
+        "TPR": 0.8029465930018416,
+        "FPR": 0.010344827586206896,
+        "PPV": 0.007702799624071212,
+        "alerts_per_10k": 104.24087762748461,
+        "true_positives_per_10k": 0.8029465930018416,
+        "missed_per_10k": 0.19705340699815843
+      }
+    ]
+  },
+  "ecosystem_proxies_dropped": [
+    "vman_main_len",
+    "vman_main_ent",
+    "vman_scripts_dict_size",
+    "vman_scripts_nested",
+    "vman__id_len",
+    "vman__id_ent",
+    "vman_dist_dict_size",
+    "vman_dist_nested",
+    "vman_directories_dict_size",
+    "vman_directories_nested",
+    "vman_maintainers_list_size",
+    "pit_ver_has_prerelease",
+    "pit_name_has_scope",
+    "pit_n_peer_dependencies",
+    "pit_n_scripts",
+    "pit_has_install_hook",
+    "pit_scripts_total_len",
+    "pit_scripts_max_len",
+    "pit_has_engines",
+    "pit_has_files_field",
+    "pit_n_classifiers",
+    "pit_requires_python_len",
+    "pit_long_description_len",
+    "vman_author_dict_size",
+    "vman_author_nested",
+    "vman_devDependencies_dict_size",
+    "vman_devDependencies_nested",
+    "vman_bin_dict_size",
+    "vman_bin_nested",
+    "vman_dependencies_dict_size",
+    "vman_dependencies_nested",
+    "vman_peerDependencies_dict_size",
+    "vman_peerDependencies_nested",
+    "vman_gitHead_len",
+    "vman_gitHead_ent",
+    "vman_keywords_list_size",
+    "vman_homepage_len",
+    "vman_homepage_ent",
+    "vman_bugs_dict_size",
+    "vman_bugs_nested",
+    "vman_tsup_dict_size",
+    "vman_tsup_nested",
+    "vman_types_len",
+    "vman_types_ent",
+    "vman_engines_dict_size",
+    "vman_engines_nested",
+    "vman_repository_dict_size",
+    "vman_repository_nested",
+    "vman_exports_dict_size",
+    "vman_exports_nested",
+    "vman_type_len",
+    "vman_type_ent",
+    "vman_nodemonConfig_dict_size",
+    "vman_nodemonConfig_nested",
+    "vman_publishConfig_dict_size",
+    "vman_publishConfig_nested",
+    "vman_c8_dict_size",
+    "vman_c8_nested",
+    "vman_module_len",
+    "vman_module_ent",
+    "vman_peerDependenciesMeta_dict_size",
+    "vman_peerDependenciesMeta_nested",
+    "vman_packageManager_len",
+    "vman_packageManager_ent",
+    "vman_exports_len",
+    "vman_exports_ent",
+    "vman_openclaw_dict_size",
+    "vman_openclaw_nested",
+    "vman__schema_len",
+    "vman__schema_ent",
+    "vman_contributors_list_size",
+    "vman_funding_len",
+    "vman_funding_ent",
+    "vman_sideEffects_bool",
+    "vman_os_list_size",
+    "vman_cpu_list_size",
+    "vman_sideEffects_list_size",
+    "vman_jest_dict_size",
+    "vman_jest_nested",
+    "vman__from_len",
+    "vman__from_ent",
+    "vman_husky_dict_size",
+    "vman_husky_nested",
+    "vman__resolved_len",
+    "vman__resolved_ent",
+    "vman__integrity_len",
+    "vman__integrity_ent",
+    "vman_commitlint_dict_size",
+    "vman_commitlint_nested",
+    "vman_optionalDependencies_dict_size",
+    "vman_optionalDependencies_nested",
+    "vman_style_len",
+    "vman_style_ent",
+    "vman_browser_len",
+    "vman_browser_ent",
+    "vman_funding_dict_size",
+    "vman_funding_nested",
+    "vman_bundleDependencies_list_size",
+    "vman_preferGlobal_bool",
+    "vman_security_dict_size",
+    "vman_security_nested",
+    "vman_unpkg_len",
+    "vman_unpkg_ent",
+    "vman_browser_dict_size",
+    "vman_browser_nested",
+    "vman_typings_len",
+    "vman_typings_ent",
+    "vman_jsdelivr_len",
+    "vman_jsdelivr_ent",
+    "vman_lint_staged_dict_size",
+    "vman_lint_staged_nested",
+    "vman_react_native_dict_size",
+    "vman_react_native_nested",
+    "vman_typesVersions_dict_size",
+    "vman_typesVersions_nested",
+    "vman____len",
+    "vman____ent",
+    "vman_overrides_dict_size",
+    "vman_overrides_nested",
+    "vman_prettier_dict_size",
+    "vman_prettier_nested",
+    "vman_magda_dict_size",
+    "vman_magda_nested",
+    "vman_readmeFilename_len",
+    "vman_readmeFilename_ent",
+    "vman_source_len",
+    "vman_source_ent",
+    "vman_release_it_dict_size",
+    "vman_release_it_nested",
+    "vman_eslintConfig_dict_size",
+    "vman_eslintConfig_nested",
+    "vman_eslintIgnore_list_size",
+    "vman_react_native_len",
+    "vman_react_native_ent",
+    "vman_react_native_builder_bob_dict_size",
+    "vman_react_native_builder_bob_nested",
+    "vman_private_bool",
+    "vman_imports_dict_size",
+    "vman_imports_nested",
+    "vman_workspaces_list_size",
+    "vman_shasum_len",
+    "vman_shasum_ent",
+    "vman_n8n_dict_size",
+    "vman_n8n_nested",
+    "vman_tsd_dict_size",
+    "vman_tsd_nested",
+    "vman_config_dict_size",
+    "vman_config_nested",
+    "vman_gypfile_bool",
+    "vman_pnpm_dict_size",
+    "vman_pnpm_nested",
+    "vman_typescript_dict_size",
+    "vman_typescript_nested",
+    "vman_browserslist_dict_size",
+    "vman_browserslist_nested",
+    "vman_limit_size_list_size",
+    "vman_executors_len",
+    "vman_executors_ent",
+    "vman_migrations_len",
+    "vman_migrations_ent",
+    "vman_verb_dict_size",
+    "vman_verb_nested",
+    "vman_preferUnplugged_bool",
+    "vman_authors_list_size",
+    "vman_funding_list_size",
+    "vman_release_dict_size",
+    "vman_release_nested",
+    "vman_libc_list_size",
+    "vman_size_limit_list_size",
+    "vman_clean_publish_dict_size",
+    "vman_clean_publish_nested",
+    "vman_simple_git_hooks_dict_size",
+    "vman_simple_git_hooks_nested",
+    "vman_licenses_list_size",
+    "vman_bugs_len",
+    "vman_bugs_ent",
+    "vman_depup_dict_size",
+    "vman_depup_nested",
+    "vman_update_len",
+    "vman_update_ent",
+    "vman_waWebVersion_len",
+    "vman_waWebVersion_ent",
+    "vman_lastUpdatedWITA_len",
+    "vman_lastUpdatedWITA_ent",
+    "vman_waWebVersionSource_len",
+    "vman_waWebVersionSource_ent",
+    "vman_repository_len",
+    "vman_repository_ent",
+    "vman_registry_bool",
+    "vman_prettier_len",
+    "vman_prettier_ent",
+    "vman_gitCommitId_len",
+    "vman_gitCommitId_ent",
+    "vman_resolutions_dict_size",
+    "vman_resolutions_nested",
+    "vman_memoraxCode_dict_size",
+    "vman_memoraxCode_nested",
+    "vman_xo_dict_size",
+    "vman_xo_nested",
+    "vman_standard_dict_size",
+    "vman_standard_nested",
+    "vman_mocha_dict_size",
+    "vman_mocha_nested",
+    "vman_nyc_dict_size",
+    "vman_nyc_nested",
+    "vman_man_list_size",
+    "vman_nano_staged_dict_size",
+    "vman_nano_staged_nested",
+    "vman_claudeall_dict_size",
+    "vman_claudeall_nested",
+    "vman_build_dict_size",
+    "vman_build_nested",
+    "vman_author_email_len",
+    "vman_author_email_ent",
+    "vman_classifiers_list_size",
+    "vman_description_content_type_len",
+    "vman_description_content_type_ent",
+    "vman_download_url_len",
+    "vman_download_url_ent",
+    "vman_home_page_len",
+    "vman_home_page_ent",
+    "vman_keywords_len",
+    "vman_keywords_ent",
+    "vman_maintainer_len",
+    "vman_maintainer_ent",
+    "vman_maintainer_email_len",
+    "vman_maintainer_email_ent",
+    "vman_package_url_len",
+    "vman_package_url_ent",
+    "vman_project_url_len",
+    "vman_project_url_ent",
+    "vman_release_url_len",
+    "vman_release_url_ent",
+    "vman_requires_python_len",
+    "vman_requires_python_ent",
+    "vman_summary_len",
+    "vman_summary_ent",
+    "vman_dynamic_list_size",
+    "vman_platform_len",
+    "vman_platform_ent",
+    "vman_project_urls_dict_size",
+    "vman_project_urls_nested",
+    "vman_requires_dist_list_size",
+    "vman_license_files_list_size",
+    "vman_provides_extra_list_size",
+    "vman_license_expression_len",
+    "vman_license_expression_ent",
+    "vman_readme_len",
+    "vman_readme_ent",
+    "vman_licenseText_len",
+    "vman_licenseText_ent",
+    "vman_auto_changelog_dict_size",
+    "vman_auto_changelog_nested",
+    "vman_files_list_size",
+    "vman_declaration_bool",
+    "vman_amdName_len",
+    "vman_amdName_ent",
+    "vman_netlifySiteId_len",
+    "vman_netlifySiteId_ent",
+    "vman_browserslist_list_size",
+    "vman_atlassian_dict_size",
+    "vman_atlassian_nested",
+    "vman_techstack_dict_size",
+    "vman_techstack_nested",
+    "vman_atlaskit_src_len",
+    "vman_atlaskit_src_ent",
+    "vman_module_es2019_len",
+    "vman_module_es2019_ent",
+    "vman_platform_feature_flags_dict_size",
+    "vman_platform_feature_flags_nested",
+    "vman_compassUnitTestMetricSourceId_len",
+    "vman_compassUnitTestMetricSourceId_ent",
+    "vman_calypso_src_len",
+    "vman_calypso_src_ent",
+    "vman_versionist_dict_size",
+    "vman_versionist_nested",
+    "vman_ava_dict_size",
+    "vman_ava_nested",
+    "vman_nx_dict_size",
+    "vman_nx_nested",
+    "vman_umd_main_len",
+    "vman_umd_main_ent",
+    "vman_babel_dict_size",
+    "vman_babel_nested",
+    "vman_clean_package_dict_size",
+    "vman_clean_package_nested",
+    "vman_scripty_dict_size",
+    "vman_scripty_nested",
+    "vman_jsnext_main_len",
+    "vman_jsnext_main_ent",
+    "vman_stratus_dict_size",
+    "vman_stratus_nested",
+    "vman_volta_dict_size",
+    "vman_volta_nested",
+    "vman_browserslist_len",
+    "vman_browserslist_ent",
+    "vman_test_main_len",
+    "vman_test_main_ent",
+    "vman_madge_dict_size",
+    "vman_madge_nested",
+    "vman_src_len",
+    "vman_src_ent",
+    "vman_preconstruct_dict_size",
+    "vman_preconstruct_nested",
+    "vman_link_len",
+    "vman_link_ent",
+    "vman_libraryTemplate_dict_size",
+    "vman_libraryTemplate_nested",
+    "vman_umd_len",
+    "vman_umd_ent",
+    "vman_pre_commit_list_size",
+    "vman_typeValidation_dict_size",
+    "vman_typeValidation_nested",
+    "vman_inlinedDependencies_dict_size",
+    "vman_inlinedDependencies_nested",
+    "vman_customElements_len",
+    "vman_customElements_ent",
+    "vman_registry_len",
+    "vman_registry_ent",
+    "vman_tshy_dict_size",
+    "vman_tshy_nested",
+    "vman_node_len",
+    "vman_node_ent",
+    "vman_clean_package_len",
+    "vman_clean_package_ent",
+    "vman_devEngines_dict_size",
+    "vman_devEngines_nested",
+    "vman_publish_dict_size",
+    "vman_publish_nested",
+    "vman_distSizeChecker_dict_size",
+    "vman_distSizeChecker_nested",
+    "vman_buildOptions_dict_size",
+    "vman_buildOptions_nested",
+    "vman_optionalDeps_dict_size",
+    "vman_optionalDeps_nested",
+    "vman_es2015_len",
+    "vman_es2015_ent",
+    "vman_automator_dict_size",
+    "vman_automator_nested",
+    "vman_lavamoat_dict_size",
+    "vman_lavamoat_nested",
+    "vman_msw_dict_size",
+    "vman_msw_nested",
+    "vman_rollup_dict_size",
+    "vman_rollup_nested",
+    "vman_scripts_info_dict_size",
+    "vman_scripts_info_nested",
+    "vman__progress_dict_size",
+    "vman__progress_nested",
+    "vman_schematics_len",
+    "vman_schematics_ent",
+    "vman_stableVersion_len",
+    "vman_stableVersion_ent",
+    "vman_minify_dict_size",
+    "vman_minify_nested",
+    "vman_scope_len",
+    "vman_scope_ent",
+    "vman_source_bool",
+    "vman_url_len",
+    "vman_url_ent",
+    "vman_sideEffects_len",
+    "vman_sideEffects_ent",
+    "vman_main_dev_len",
+    "vman_main_dev_ent",
+    "vman_wireit_dict_size",
+    "vman_wireit_nested",
+    "vman_main_h5_len",
+    "vman_main_h5_ent",
+    "vman_npmPublishAccess_len",
+    "vman_npmPublishAccess_ent",
+    "vman_typeScriptVersion_len",
+    "vman_typeScriptVersion_ent",
+    "vman_typesPublisherContentHash_len",
+    "vman_typesPublisherContentHash_ent",
+    "vman__shasum_len",
+    "vman__shasum_ent",
+    "vman_tags_list_size",
+    "vman_wix_dict_size",
+    "vman_wix_nested",
+    "vman_falconPackageHash_len",
+    "vman_falconPackageHash_ent",
+    "vman_wallaby_dict_size",
+    "vman_wallaby_nested",
+    "vman_wpScript_bool",
+    "vman_wpWorkers_dict_size",
+    "vman_wpWorkers_nested",
+    "vman_wpScriptModuleExports_dict_size",
+    "vman_wpScriptModuleExports_nested",
+    "vman_id_len",
+    "vman_id_ent",
+    "vman__engineSupported_bool",
+    "vman__defaultsLoaded_bool",
+    "vman_corifeus_dict_size",
+    "vman_corifeus_nested",
+    "vman__npmJsonOpts_dict_size",
+    "vman__npmJsonOpts_nested",
+    "vman_ci_dict_size",
+    "vman_ci_nested",
+    "vman_engine_dict_size",
+    "vman_engine_nested",
+    "vman___version_len",
+    "vman___version_ent",
+    "vman_depcheck_dict_size",
+    "vman_depcheck_nested",
+    "vman_license_dict_size",
+    "vman_license_nested",
+    "vman_component_dict_size",
+    "vman_component_nested",
+    "vman_template_dict_size",
+    "vman_template_nested",
+    "vman_snyk_bool",
+    "vman__nodeSupported_bool",
+    "vman_importSort_dict_size",
+    "vman_importSort_nested",
+    "vman_docs_url_len",
+    "vman_docs_url_ent"
+  ],
+  "hyperparameters": {
+    "CatBoost": {
+      "grid": {
+        "depth": [
+          4,
+          6,
+          8
+        ],
+        "learning_rate": [
+          0.01,
+          0.05,
+          0.1
+        ],
+        "l2_leaf_reg": [
+          1,
+          3,
+          5
+        ],
+        "iterations": [
+          500
+        ]
+      },
+      "selected": {
+        "depth": 6,
+        "iterations": 500,
+        "l2_leaf_reg": 1,
+        "learning_rate": 0.05
+      },
+      "cv_score_au_pr": 0.9825487844649754,
+      "cv": "StratifiedGroupKFold(5)"
+    },
+    "RandomForest": {
+      "grid": {
+        "n_estimators": [
+          100,
+          200,
+          300
+        ],
+        "max_depth": [
+          10,
+          20,
+          null
+        ],
+        "min_samples_split": [
+          2,
+          5,
+          10
+        ],
+        "max_features": [
+          "sqrt",
+          "log2"
+        ]
+      },
+      "selected": {
+        "max_depth": 10,
+        "max_features": "log2",
+        "min_samples_split": 2,
+        "n_estimators": 100
+      },
+      "cv_score_au_pr": 0.9798135145075918,
+      "cv": "StratifiedGroupKFold(5)"
+    },
+    "Stacking_meta": {
+      "grid": {
+        "C": [
+          1.0
+        ]
+      },
+      "selected": {
+        "C": 1.0,
+        "penalty": "l2"
+      }
+    },
+    "note": "protocole A : configuration par defaut reproduisant la soumission ; protocole B : valeurs ci-dessus"
+  },
+  "protocol_B": {
+    "selection_log": {
+      "initial": 40,
+      "variance": 40,
+      "mutual_info": 40,
+      "boruta": 38,
+      "rfe": 30,
+      "corr_prune": 26,
+      "budget": 18
+    },
+    "selected": [
+      "pit_n_maintainers",
+      "vman_author_ent",
+      "pit_days_since_first",
+      "vman_description_len",
+      "pit_n_keywords",
+      "pit_description_len",
+      "pit_median_gap_days",
+      "pit_author_email_domain_score",
+      "pit_description_entropy",
+      "pit_has_repository",
+      "vman_description_ent",
+      "pit_ver_is_zero_major",
+      "pit_std_gap_days",
+      "vman_version_ent",
+      "pit_n_dev_dependencies",
+      "pit_n_dependencies",
+      "pit_releases_30d",
+      "pit_name_n_hyphens"
+    ],
+    "n_selected": 18,
+    "table": [
+      {
+        "protocol": "B_corrected",
+        "model": "CatBoost",
+        "train_accuracy": 1.0,
+        "n": 968,
+        "TN": 272,
+        "FP": 5,
+        "FN": 74,
+        "TP": 617,
+        "test_accuracy": 0.9183884297520661,
+        "test_precision_pos": 0.9919614147909968,
+        "test_recall_pos": 0.8929088277858177,
+        "test_f1_pos": 0.9398324447829398,
+        "test_mcc": 0.8250559034288553,
+        "test_auc_roc": 0.9761659709415016,
+        "test_au_pr": 0.9917873421517993,
+        "au_pr_baseline": 0.7138429752066116,
+        "test_specificity": 0.9819494584837545,
+        "test_fpr": 0.018050541516245487,
+        "test_brier": 0.06891083861020779,
+        "threshold": 0.5,
+        "overfit_gap": 0.08161157024793386
+      },
+      {
+        "protocol": "B_corrected",
+        "model": "RandomForest",
+        "train_accuracy": 0.9941622883829538,
+        "n": 968,
+        "TN": 271,
+        "FP": 6,
+        "FN": 77,
+        "TP": 614,
+        "test_accuracy": 0.9142561983471075,
+        "test_precision_pos": 0.9903225806451613,
+        "test_recall_pos": 0.8885672937771346,
+        "test_f1_pos": 0.9366895499618612,
+        "test_mcc": 0.8165180183509173,
+        "test_auc_roc": 0.9694734257367807,
+        "test_au_pr": 0.9888630385952065,
+        "au_pr_baseline": 0.7138429752066116,
+        "test_specificity": 0.9783393501805054,
+        "test_fpr": 0.021660649819494584,
+        "test_brier": 0.08232239152635563,
+        "threshold": 0.5,
+        "overfit_gap": 0.07990609003584637
+      },
+      {
+        "protocol": "B_corrected",
+        "model": "Stacking",
+        "train_accuracy": 0.9964973730297724,
+        "n": 968,
+        "TN": 267,
+        "FP": 10,
+        "FN": 60,
+        "TP": 631,
+        "test_accuracy": 0.9276859504132231,
+        "test_precision_pos": 0.984399375975039,
+        "test_recall_pos": 0.9131693198263386,
+        "test_f1_pos": 0.9474474474474475,
+        "test_mcc": 0.8381261678781412,
+        "test_auc_roc": 0.9729267999602942,
+        "test_au_pr": 0.9905637337384391,
+        "au_pr_baseline": 0.7138429752066116,
+        "test_specificity": 0.9638989169675091,
+        "test_fpr": 0.036101083032490974,
+        "test_brier": 0.05552813777969405,
+        "threshold": 0.5,
+        "overfit_gap": 0.06881142261654927
+      }
+    ],
+    "best_model": "CatBoost",
+    "bootstrap_ci": {
+      "CatBoost": {
+        "auc_roc_ci95": [
+          0.9674979931749449,
+          0.9839789698505558
+        ],
+        "au_pr_ci95": [
+          0.9888825448435932,
+          0.9943742904681716
+        ]
+      },
+      "RandomForest": {
+        "auc_roc_ci95": [
+          0.9586010054942465,
+          0.9784118649141971
+        ],
+        "au_pr_ci95": [
+          0.984745496660115,
+          0.9926000814438217
+        ]
+      },
+      "Stacking": {
+        "auc_roc_ci95": [
+          0.9631229090925075,
+          0.9810689182754839
+        ],
+        "au_pr_ci95": [
+          0.9868998885719186,
+          0.9937110890991417
+        ]
+      }
+    },
+    "mcnemar": {
+      "n_comparisons": 3,
+      "results": {
+        "CatBoost_vs_RandomForest": {
+          "b": 18,
+          "c": 14,
+          "p_exact": 0.5966148958541453,
+          "p_bonferroni": 1.0
+        },
+        "CatBoost_vs_Stacking": {
+          "b": 5,
+          "c": 14,
+          "p_exact": 0.063568115234375,
+          "p_bonferroni": 0.190704345703125
+        },
+        "RandomForest_vs_Stacking": {
+          "b": 4,
+          "c": 17,
+          "p_exact": 0.007197380065917969,
+          "p_bonferroni": 0.021592140197753906
+        }
+      }
+    },
+    "threshold": 0.955,
+    "threshold_selected_on": "validation",
+    "budget_feasible": false,
+    "message": "budget de 50 alertes/10k inatteignable a rappel >= 0.8 : minimum realisable 351 alertes/10k (rappel 0.801, 2/181 FP)",
+    "metrics_at_threshold": {
+      "n": 968,
+      "TN": 277,
+      "FP": 0,
+      "FN": 320,
+      "TP": 371,
+      "test_accuracy": 0.6694214876033058,
+      "test_precision_pos": 1.0,
+      "test_recall_pos": 0.5369030390738061,
+      "test_f1_pos": 0.6986817325800376,
+      "test_mcc": 0.49911503228179316,
+      "test_auc_roc": 0.9761659709415016,
+      "test_au_pr": 0.9917873421517993,
+      "au_pr_baseline": 0.7138429752066116,
+      "test_specificity": 1.0,
+      "test_fpr": 0.0,
+      "test_brier": 0.06891083861020779,
+      "threshold": 0.955
+    },
+    "prevalence_table": [
+      {
+        "prevalence": 0.01,
+        "fpr_estimate": "point",
+        "TPR": 0.5369030390738061,
+        "FPR": 0.0,
+        "PPV": 1.0,
+        "alerts_per_10k": 53.69030390738061,
+        "true_positives_per_10k": 53.69030390738061,
+        "missed_per_10k": 46.30969609261939
+      },
+      {
+        "prevalence": 0.01,
+        "fpr_estimate": "upper95",
+        "TPR": 0.5369030390738061,
+        "FPR": 0.010830324909747292,
+        "PPV": 0.3336655908881342,
+        "alerts_per_10k": 160.91052051387882,
+        "true_positives_per_10k": 53.69030390738061,
+        "missed_per_10k": 46.30969609261939
+      },
+      {
+        "prevalence": 0.001,
+        "fpr_estimate": "point",
+        "TPR": 0.5369030390738061,
+        "FPR": 0.0,
+        "PPV": 1.0,
+        "alerts_per_10k": 5.369030390738061,
+        "true_positives_per_10k": 5.369030390738061,
+        "missed_per_10k": 4.630969609261939
+      },
+      {
+        "prevalence": 0.001,
+        "fpr_estimate": "upper95",
+        "TPR": 0.5369030390738061,
+        "FPR": 0.010830324909747292,
+        "PPV": 0.047277583689332534,
+        "alerts_per_10k": 113.56397623911352,
+        "true_positives_per_10k": 5.369030390738061,
+        "missed_per_10k": 4.630969609261939
+      },
+      {
+        "prevalence": 0.0001,
+        "fpr_estimate": "point",
+        "TPR": 0.5369030390738061,
+        "FPR": 0.0,
+        "PPV": 1.0,
+        "alerts_per_10k": 0.5369030390738061,
+        "true_positives_per_10k": 0.5369030390738061,
+        "missed_per_10k": 0.4630969609261939
+      },
+      {
+        "prevalence": 0.0001,
+        "fpr_estimate": "upper95",
+        "TPR": 0.5369030390738061,
+        "FPR": 0.010830324909747292,
+        "PPV": 0.004933441007774393,
+        "alerts_per_10k": 108.82932181163699,
+        "true_positives_per_10k": 0.5369030390738061,
+        "missed_per_10k": 0.4630969609261939
+      }
+    ],
+    "split": {
+      "n_train": 1713,
+      "n_val": 649,
+      "n_test": 968,
+      "test_malicious": 691,
+      "test_benign": 277
+    }
+  },
+  "comparison_A_vs_B": {
+    "table": [
+      {
+        "protocol": "A_original",
+        "model": "CatBoost",
+        "test_accuracy": 0.9807923169267707,
+        "test_f1_pos": 0.9851851851851852,
+        "test_mcc": 0.9580033146482267,
+        "test_auc_roc": 0.9933574649139518,
+        "test_au_pr": 0.9970218536772018,
+        "au_pr_baseline": 0.6518607442977191,
+        "test_fpr": 0.017241379310344827,
+        "overfit_gap": 0.019207683073229287
+      },
+      {
+        "protocol": "A_original",
+        "model": "RandomForest",
+        "test_accuracy": 0.9759903961584634,
+        "test_f1_pos": 0.9813084112149533,
+        "test_mcc": 0.9486007000432104,
+        "test_auc_roc": 0.991153870578523,
+        "test_au_pr": 0.9962772686383689,
+        "au_pr_baseline": 0.6518607442977191,
+        "test_fpr": 0.006896551724137931,
+        "overfit_gap": 0.019203836921232287
+      },
+      {
+        "protocol": "A_original",
+        "model": "Stacking",
+        "test_accuracy": 0.9807923169267707,
+        "test_f1_pos": 0.9851576994434137,
+        "test_mcc": 0.9581628516551352,
+        "test_auc_roc": 0.9913189813932813,
+        "test_au_pr": 0.9963648976032774,
+        "au_pr_baseline": 0.6518607442977191,
+        "test_fpr": 0.013793103448275862,
+        "overfit_gap": 0.019207683073229287
+      },
+      {
+        "protocol": "B_corrected",
+        "model": "CatBoost",
+        "test_accuracy": 0.9183884297520661,
+        "test_f1_pos": 0.9398324447829398,
+        "test_mcc": 0.8250559034288553,
+        "test_auc_roc": 0.9761659709415016,
+        "test_au_pr": 0.9917873421517993,
+        "au_pr_baseline": 0.7138429752066116,
+        "test_fpr": 0.018050541516245487,
+        "overfit_gap": 0.08161157024793386
+      },
+      {
+        "protocol": "B_corrected",
+        "model": "RandomForest",
+        "test_accuracy": 0.9142561983471075,
+        "test_f1_pos": 0.9366895499618612,
+        "test_mcc": 0.8165180183509173,
+        "test_auc_roc": 0.9694734257367807,
+        "test_au_pr": 0.9888630385952065,
+        "au_pr_baseline": 0.7138429752066116,
+        "test_fpr": 0.021660649819494584,
+        "overfit_gap": 0.07990609003584637
+      },
+      {
+        "protocol": "B_corrected",
+        "model": "Stacking",
+        "test_accuracy": 0.9276859504132231,
+        "test_f1_pos": 0.9474474474474475,
+        "test_mcc": 0.8381261678781412,
+        "test_auc_roc": 0.9729267999602942,
+        "test_au_pr": 0.9905637337384391,
+        "au_pr_baseline": 0.7138429752066116,
+        "test_fpr": 0.036101083032490974,
+        "overfit_gap": 0.06881142261654927
+      }
+    ],
+    "accuracy_inflation": {
+      "CatBoost": 0.062404,
+      "RandomForest": 0.061734,
+      "Stacking": 0.053106
+    }
+  },
+  "ecosystem_confound": {
+    "composition": {
+      "0": {
+        "npm": 413,
+        "pypi": 746
+      },
+      "1": {
+        "npm": 2092,
+        "pypi": 79
+      }
+    },
+    "auc_ecosystem_only": 0.8036347826017838,
+    "auc_model": 0.9761659709415016,
+    "share_of_discriminative_power": 0.6376658584010536,
+    "n_proxy_features": 0,
+    "n_selected": 18,
+    "malicious_ratio_by_ecosystem": {
+      "mean": {
+        "npm": 0.835129740518962,
+        "pypi": 0.09575757575757576
+      },
+      "size": {
+        "npm": 2505,
+        "pypi": 825
+      }
+    },
+    "single_ecosystem_features": {}
+  },
+  "generalisation": {
+    "cross_ecosystem": {
+      "npm->pypi": {
+        "auc_roc": 0.653909458037805,
+        "au_pr": 0.12994319599336512,
+        "au_pr_baseline": 0.09575757575757576,
+        "n_train": 2505,
+        "n_test": 825,
+        "n_test_malicious": 79
+      },
+      "pypi->npm": {
+        "auc_roc": 0.6371696165260023,
+        "au_pr": 0.9056428274801621,
+        "au_pr_baseline": 0.835129740518962,
+        "n_train": 825,
+        "n_test": 2505,
+        "n_test_malicious": 2092
+      }
+    },
+    "out_of_time": {
+      "auc_roc": 0.9715179946386814,
+      "au_pr": 0.9983148126123635,
+      "au_pr_baseline": 0.9465465465465466,
+      "n_train": 1665,
+      "n_test": 1665,
+      "n_test_malicious": 1576
+    },
+    "cutoff": "2026-06-02",
+    "data_span_days": 1667
+  },
+  "ablations": {
+    "au_pr_ci_width": 0.005491745624578437,
+    "cumulative": [
+      {
+        "stage": "initial",
+        "k": 40,
+        "auc_roc": 0.9748337312637468,
+        "au_pr": 0.9909779172437845,
+        "au_pr_baseline": 0.7138429752066116
+      },
+      {
+        "stage": "variance",
+        "k": 40,
+        "auc_roc": 0.9748337312637468,
+        "au_pr": 0.9909779172437845,
+        "au_pr_baseline": 0.7138429752066116
+      },
+      {
+        "stage": "mi",
+        "k": 40,
+        "auc_roc": 0.9748337312637468,
+        "au_pr": 0.9909779172437845,
+        "au_pr_baseline": 0.7138429752066116
+      },
+      {
+        "stage": "boruta",
+        "k": 38,
+        "auc_roc": 0.9735432873405884,
+        "au_pr": 0.9905165583894232,
+        "au_pr_baseline": 0.7138429752066116
+      },
+      {
+        "stage": "rfe",
+        "k": 30,
+        "auc_roc": 0.9744523450030563,
+        "au_pr": 0.9908383049766375,
+        "au_pr_baseline": 0.7138429752066116
+      },
+      {
+        "stage": "corr",
+        "k": 26,
+        "auc_roc": 0.9742903864539959,
+        "au_pr": 0.9910040372505662,
+        "au_pr_baseline": 0.7138429752066116
+      },
+      {
+        "stage": "budget",
+        "k": 18,
+        "auc_roc": 0.9747919355091507,
+        "au_pr": 0.9911775711281576,
+        "au_pr_baseline": 0.7138429752066116
+      }
+    ],
+    "cost_of_reduction_au_pr": -0.00019965388437315212,
+    "leave_one_stage_out": [
+      {
+        "removed": "none (full pipeline)",
+        "k": 18,
+        "auc_roc": 0.9747919355091507,
+        "au_pr": 0.9911775711281576,
+        "au_pr_baseline": 0.7138429752066116,
+        "overlap_with_full": 1.0,
+        "delta_au_pr": 0.0
+      },
+      {
+        "removed": "variance",
+        "k": 18,
+        "auc_roc": 0.9747919355091507,
+        "au_pr": 0.9911775711281576,
+        "au_pr_baseline": 0.7138429752066116,
+        "overlap_with_full": 1.0,
+        "delta_au_pr": 0.0
+      },
+      {
+        "removed": "mi",
+        "k": 18,
+        "auc_roc": 0.9747919355091507,
+        "au_pr": 0.9911775711281576,
+        "au_pr_baseline": 0.7138429752066116,
+        "overlap_with_full": 1.0,
+        "delta_au_pr": 0.0
+      },
+      {
+        "removed": "boruta",
+        "k": 18,
+        "auc_roc": 0.9735014915859921,
+        "au_pr": 0.990553041261626,
+        "au_pr_baseline": 0.7138429752066116,
+        "overlap_with_full": 0.8,
+        "delta_au_pr": -0.000624529866531609
+      },
+      {
+        "removed": "rfe",
+        "k": 18,
+        "auc_roc": 0.9687367755620223,
+        "au_pr": 0.9887556378108708,
+        "au_pr_baseline": 0.7138429752066116,
+        "overlap_with_full": 0.8,
+        "delta_au_pr": -0.002421933317286795
+      },
+      {
+        "removed": "corr",
+        "k": 18,
+        "auc_roc": 0.9715632134665921,
+        "au_pr": 0.98993233461438,
+        "au_pr_baseline": 0.7138429752066116,
+        "overlap_with_full": 0.8947368421052632,
+        "delta_au_pr": -0.0012452365137776145
+      },
+      {
+        "removed": "budget",
+        "k": 26,
+        "auc_roc": 0.9742903864539959,
+        "au_pr": 0.9910040372505662,
+        "au_pr_baseline": 0.7138429752066116,
+        "overlap_with_full": 0.6923076923076923,
+        "delta_au_pr": -0.00017353387759144745
+      }
+    ],
+    "variance_on_full_space": {
+      "space": 456,
+      "with_variance": {
+        "k": 18,
+        "auc_roc": 0.9769966615641016,
+        "au_pr": 0.9916273548714056,
+        "log": {
+          "initial": 456,
+          "variance": 141,
+          "mutual_info": 100,
+          "boruta": 79,
+          "rfe": 30,
+          "corr_prune": 25,
+          "budget": 18
+        }
+      },
+      "without_variance": {
+        "k": 18,
+        "auc_roc": 0.9764428678157016,
+        "au_pr": 0.9913322246366905,
+        "log": {
+          "initial": 456,
+          "mutual_info": 100,
+          "boruta": 78,
+          "rfe": 30,
+          "corr_prune": 24,
+          "budget": 18
+        }
+      },
+      "jaccard": 0.5652173913043478,
+      "recovered_without_variance": [
+        "pit_n_maintainers",
+        "pit_releases_30d",
+        "vman_author_len",
+        "vman_name_ent",
+        "vman_types_len"
+      ],
+      "lost_without_variance": [
+        "pit_long_description_len",
+        "pit_n_dependencies",
+        "pit_name_entropy",
+        "vman_maintainers_list_size",
+        "vman_types_ent"
+      ]
+    },
+    "order_before_budget": {
+      "table": [
+        {
+          "order": "corr -> variance -> mi -> boruta -> rfe",
+          "k": 30,
+          "auc_roc": 0.9765525816715168,
+          "au_pr": 0.9915331903514129,
+          "au_pr_baseline": 0.7138429752066116,
+          "jaccard_with_first": 0.8064516129032258
+        },
+        {
+          "order": "variance -> mi -> corr -> boruta -> rfe",
+          "k": 30,
+          "auc_roc": 0.9765525816715168,
+          "au_pr": 0.9915331903514129,
+          "au_pr_baseline": 0.7138429752066116,
+          "jaccard_with_first": 0.8064516129032258
+        },
+        {
+          "order": "variance -> corr -> mi -> boruta -> rfe",
+          "k": 30,
+          "auc_roc": 0.9765525816715168,
+          "au_pr": 0.9915331903514129,
+          "au_pr_baseline": 0.7138429752066116,
+          "jaccard_with_first": 0.8064516129032258
+        },
+        {
+          "order": "variance -> mi -> boruta -> rfe -> corr",
+          "k": 26,
+          "auc_roc": 0.9742903864539959,
+          "au_pr": 0.9910040372505662,
+          "au_pr_baseline": 0.7138429752066116,
+          "jaccard_with_first": 1.0
+        },
+        {
+          "order": "boruta -> variance -> mi -> rfe -> corr",
+          "k": 26,
+          "auc_roc": 0.9742903864539959,
+          "au_pr": 0.9910040372505662,
+          "au_pr_baseline": 0.7138429752066116,
+          "jaccard_with_first": 1.0
+        },
+        {
+          "order": "mi -> variance -> boruta -> corr -> rfe",
+          "k": 30,
+          "auc_roc": 0.9728379839817771,
+          "au_pr": 0.9903630203942512,
+          "au_pr_baseline": 0.7138429752066116,
+          "jaccard_with_first": 0.8064516129032258
+        }
+      ],
+      "spread_au_pr": 0.001170169957161682,
+      "distinguishable": false,
+      "mean_jaccard": 0.8709677419354839
+    },
+    "order_after_budget": {
+      "table": [
+        {
+          "order": "variance -> mi -> boruta -> rfe -> corr -> budget",
+          "k": 18,
+          "auc_roc": 0.9747919355091507,
+          "au_pr": 0.9911775711281576,
+          "au_pr_baseline": 0.7138429752066116
+        },
+        {
+          "order": "boruta -> variance -> mi -> rfe -> corr -> budget",
+          "k": 18,
+          "auc_roc": 0.9747919355091507,
+          "au_pr": 0.9911775711281576,
+          "au_pr_baseline": 0.7138429752066116
+        },
+        {
+          "order": "mi -> variance -> boruta -> corr -> rfe -> budget",
+          "k": 18,
+          "auc_roc": 0.972561087107577,
+          "au_pr": 0.9904300478697643,
+          "au_pr_baseline": 0.7138429752066116
+        },
+        {
+          "order": "corr -> variance -> mi -> boruta -> rfe -> budget",
+          "k": 18,
+          "auc_roc": 0.9730783095707053,
+          "au_pr": 0.9900720351919456,
+          "au_pr_baseline": 0.7138429752066116
+        },
+        {
+          "order": "variance -> corr -> mi -> boruta -> rfe -> budget",
+          "k": 18,
+          "auc_roc": 0.9730783095707053,
+          "au_pr": 0.9900720351919456,
+          "au_pr_baseline": 0.7138429752066116
+        },
+        {
+          "order": "variance -> mi -> corr -> boruta -> rfe -> budget",
+          "k": 18,
+          "auc_roc": 0.9730783095707053,
+          "au_pr": 0.9900720351919456,
+          "au_pr_baseline": 0.7138429752066116
+        }
+      ],
+      "spread_au_pr": 0.0011055359362119876
+    },
+    "matched_budget": {
+      "table": [
+        {
+          "selector": "Hybrid pipeline (ours)",
+          "k": 18,
+          "auc_roc": 0.9747919355091507,
+          "au_pr": 0.9911775711281576,
+          "au_pr_baseline": 0.7138429752066116,
+          "jaccard_with_ours": 1.0
+        },
+        {
+          "selector": "L1 logistic top-k",
+          "k": 18,
+          "auc_roc": 0.9712497453071205,
+          "au_pr": 0.9895442978460435,
+          "au_pr_baseline": 0.7138429752066116,
+          "jaccard_with_ours": 0.5652173913043478
+        },
+        {
+          "selector": "CatBoost importance top-k",
+          "k": 18,
+          "auc_roc": 0.9696719555711129,
+          "au_pr": 0.989347451856077,
+          "au_pr_baseline": 0.7138429752066116,
+          "jaccard_with_ours": 0.8
+        },
+        {
+          "selector": "RF importance top-k",
+          "k": 18,
+          "auc_roc": 0.9702623206047846,
+          "au_pr": 0.9893438914972524,
+          "au_pr_baseline": 0.7138429752066116,
+          "jaccard_with_ours": 0.5652173913043478
+        },
+        {
+          "selector": "Mutual information top-k",
+          "k": 18,
+          "auc_roc": 0.9591289764742146,
+          "au_pr": 0.9847780745617365,
+          "au_pr_baseline": 0.7138429752066116,
+          "jaccard_with_ours": 0.5
+        },
+        {
+          "selector": "Random-18 (median of 20)",
+          "k": 18,
+          "auc_roc": 0.9588729774773128,
+          "au_pr": 0.9828639366035001,
+          "au_pr_baseline": 0.7138429752066116,
+          "jaccard_with_ours": 0.3333333333333333
+        },
+        {
+          "selector": "PCA-18 components",
+          "k": 18,
+          "auc_roc": 0.921141860015569,
+          "au_pr": 0.9694946690462491,
+          "au_pr_baseline": 0.7138429752066116,
+          "jaccard_with_ours": NaN
+        }
+      ],
+      "gain_over_best_alternative": 0.001633273282114156,
+      "gain_exceeds_ci": false
+    },
+    "budget_sweep": [
+      {
+        "budget": 5,
+        "k": 5,
+        "auc_roc": 0.9608060311273883,
+        "au_pr": 0.9863985270739094,
+        "au_pr_baseline": 0.7138429752066116
+      },
+      {
+        "budget": 10,
+        "k": 10,
+        "auc_roc": 0.9657327057004185,
+        "au_pr": 0.9873416272734792,
+        "au_pr_baseline": 0.7138429752066116
+      },
+      {
+        "budget": 15,
+        "k": 15,
+        "auc_roc": 0.9656334407832524,
+        "au_pr": 0.9876596601273583,
+        "au_pr_baseline": 0.7138429752066116
+      },
+      {
+        "budget": 18,
+        "k": 18,
+        "auc_roc": 0.9747919355091507,
+        "au_pr": 0.9911775711281576,
+        "au_pr_baseline": 0.7138429752066116
+      },
+      {
+        "budget": 25,
+        "k": 25,
+        "auc_roc": 0.9757950336194601,
+        "au_pr": 0.9913291518531981,
+        "au_pr_baseline": 0.7138429752066116
+      },
+      {
+        "budget": 30,
+        "k": 26,
+        "auc_roc": 0.9742903864539959,
+        "au_pr": 0.9910040372505662,
+        "au_pr_baseline": 0.7138429752066116
+      },
+      {
+        "budget": 40,
+        "k": 26,
+        "auc_roc": 0.9742903864539959,
+        "au_pr": 0.9910040372505662,
+        "au_pr_baseline": 0.7138429752066116
+      },
+      {
+        "budget": 40,
+        "k": 40,
+        "auc_roc": 0.9748337312637468,
+        "au_pr": 0.9909779172437845,
+        "au_pr_baseline": 0.7138429752066116
+      }
+    ],
+    "selection_stability": {
+      "n_runs": 10,
+      "mean_jaccard": 0.7036044657097289,
+      "median_jaccard": 0.7142857142857143,
+      "selection_frequency": {
+        "pit_n_maintainers": 1.0,
+        "vman_description_len": 1.0,
+        "pit_days_since_first": 1.0,
+        "pit_n_keywords": 1.0,
+        "pit_author_email_domain_score": 1.0,
+        "pit_median_gap_days": 1.0,
+        "pit_has_repository": 1.0,
+        "pit_description_len": 1.0,
+        "vman_description_ent": 1.0,
+        "pit_description_entropy": 0.9,
+        "vman_author_ent": 0.9,
+        "pit_n_dependencies": 0.9,
+        "pit_std_gap_days": 0.9,
+        "pit_ver_is_zero_major": 0.9,
+        "pit_n_dev_dependencies": 0.7,
+        "pit_name_n_hyphens": 0.7,
+        "vman_version_ent": 0.5,
+        "pit_releases_30d": 0.5,
+        "vman_name_ent": 0.4,
+        "vman_name_len": 0.4,
+        "vman_license_ent": 0.3,
+        "pit_name_entropy": 0.3,
+        "pit_name_n_digits": 0.2,
+        "pit_n_prior_releases": 0.2,
+        "pit_name_len": 0.1,
+        "vman_author_len": 0.1,
+        "pit_ver_entropy": 0.1
+      },
+      "n_features_selected_80pct": 14
+    },
+    "family_ablation": {
+      "membership": {
+        "authorship": [
+          "pit_n_maintainers",
+          "vman_author_ent",
+          "pit_author_email_domain_score"
+        ],
+        "release_history": [
+          "pit_days_since_first",
+          "pit_median_gap_days",
+          "pit_std_gap_days",
+          "pit_releases_30d"
+        ],
+        "description": [
+          "vman_description_len",
+          "pit_n_keywords",
+          "pit_description_len",
+          "pit_description_entropy",
+          "vman_description_ent"
+        ],
+        "versioning": [
+          "pit_ver_is_zero_major",
+          "vman_version_ent"
+        ],
+        "dependencies": [
+          "pit_n_dev_dependencies",
+          "pit_n_dependencies"
+        ],
+        "identity": [
+          "pit_has_repository",
+          "pit_name_n_hyphens"
+        ]
+      },
+      "table": [
+        {
+          "removed_family": "release_history",
+          "n_removed": 4,
+          "k": 14,
+          "auc_roc": 0.9525147983093617,
+          "au_pr": 0.9813499870789035,
+          "au_pr_baseline": 0.7138429752066116,
+          "delta_au_pr": -0.009827584049254101
+        },
+        {
+          "removed_family": "description",
+          "n_removed": 5,
+          "k": 13,
+          "auc_roc": 0.9563913545481617,
+          "au_pr": 0.9835434578780944,
+          "au_pr_baseline": 0.7138429752066116,
+          "delta_au_pr": -0.007634113250063246
+        },
+        {
+          "removed_family": "authorship",
+          "n_removed": 3,
+          "k": 15,
+          "auc_roc": 0.9669761293996563,
+          "au_pr": 0.986864067814268,
+          "au_pr_baseline": 0.7138429752066116,
+          "delta_au_pr": -0.004313503313889577
+        },
+        {
+          "removed_family": "dependencies",
+          "n_removed": 2,
+          "k": 16,
+          "auc_roc": 0.9717721922395732,
+          "au_pr": 0.9899498098397814,
+          "au_pr_baseline": 0.7138429752066116,
+          "delta_au_pr": -0.0012277612883762057
+        },
+        {
+          "removed_family": "versioning",
+          "n_removed": 2,
+          "k": 16,
+          "auc_roc": 0.9731984723651693,
+          "au_pr": 0.990517144165413,
+          "au_pr_baseline": 0.7138429752066116,
+          "delta_au_pr": -0.000660426962744598
+        },
+        {
+          "removed_family": "identity",
+          "n_removed": 2,
+          "k": 16,
+          "auc_roc": 0.9736634501350525,
+          "au_pr": 0.9906224049746816,
+          "au_pr_baseline": 0.7138429752066116,
+          "delta_au_pr": -0.000555166153476061
+        },
+        {
+          "removed_family": "none",
+          "n_removed": 0,
+          "k": 18,
+          "auc_roc": 0.9747919355091507,
+          "au_pr": 0.9911775711281576,
+          "au_pr_baseline": 0.7138429752066116,
+          "delta_au_pr": 0.0
+        }
+      ]
+    },
+    "ecosystem_prefilter_sensitivity": {
+      "with_prefilter": {
+        "k": 18,
+        "auc_roc": 0.9747919355091507,
+        "au_pr": 0.9911775711281576,
+        "au_pr_baseline": 0.7138429752066116,
+        "n_proxy_in_selection": 0
+      },
+      "without_prefilter": {
+        "k": 18,
+        "auc_roc": 0.9769966615641016,
+        "au_pr": 0.9916273548714056,
+        "n_proxy_in_selection": 8
+      },
+      "jaccard": 0.3333333333333333
+    },
+    "random_baseline_full_space": {
+      "space_size": 456,
+      "k": 18,
+      "n_draws": 20,
+      "auc_roc_median": 0.814411176184779,
+      "auc_roc_p05": 0.7016541975998789,
+      "auc_roc_p95": 0.938868876268893,
+      "au_pr_median": 0.9053551503473616,
+      "au_pr_p05": 0.8246269902980297,
+      "au_pr_p95": 0.9731954209117277,
+      "mean_ecosystem_proxies_per_draw": 16.5,
+      "note": "tirage sur l'espace point-in-time complet ; chaque tirage contient en moyenne le nombre de proxies d'ecosysteme indique, ce qui gonfle sa performance apparente",
+      "gain_over_random_full_space": 0.08582242078079605,
+      "gain_exceeds_ci": true
+    },
+    "budget_sweep_full_space": {
+      "table": [
+        {
+          "k": 1,
+          "auc_roc": 0.6955388256437853,
+          "au_pr": 0.8222136284393279
+        },
+        {
+          "k": 2,
+          "auc_roc": 0.9361230258036539,
+          "au_pr": 0.9662473732080004
+        },
+        {
+          "k": 3,
+          "auc_roc": 0.9262122074950238,
+          "au_pr": 0.9615896568198632
+        },
+        {
+          "k": 5,
+          "auc_roc": 0.945268459356241,
+          "au_pr": 0.9774446033609707
+        },
+        {
+          "k": 8,
+          "auc_roc": 0.9566290679024277,
+          "au_pr": 0.9838629783481427
+        },
+        {
+          "k": 10,
+          "auc_roc": 0.9610855402362506,
+          "au_pr": 0.9864507123278021
+        },
+        {
+          "k": 15,
+          "auc_roc": 0.9749486695888866,
+          "au_pr": 0.9916245838054236
+        },
+        {
+          "k": 18,
+          "auc_roc": 0.9687315510926978,
+          "au_pr": 0.9892020058937361
+        },
+        {
+          "k": 25,
+          "auc_roc": 0.9721640274389128,
+          "au_pr": 0.9905972601353561
+        },
+        {
+          "k": 40,
+          "auc_roc": 0.9743948758404865,
+          "au_pr": 0.9909749594022805
+        },
+        {
+          "k": 80,
+          "auc_roc": 0.9810821965758828,
+          "au_pr": 0.9932728703040925
+        },
+        {
+          "k": 456,
+          "auc_roc": 0.9794051419227093,
+          "au_pr": 0.992714415504141
+        }
+      ],
+      "saturation_k": 15
+    }
+  },
+  "evasion": {
+    "free": [
+      "vman_description_len",
+      "pit_n_keywords",
+      "pit_description_len",
+      "pit_description_entropy",
+      "pit_has_repository",
+      "vman_description_ent",
+      "pit_n_dev_dependencies",
+      "pit_n_dependencies",
+      "pit_name_n_hyphens"
+    ],
+    "costly": [
+      "pit_days_since_first",
+      "pit_median_gap_days",
+      "pit_std_gap_days",
+      "pit_releases_30d"
+    ],
+    "fixed": [
+      "pit_n_maintainers",
+      "vman_author_ent",
+      "pit_author_email_domain_score",
+      "pit_ver_is_zero_major",
+      "vman_version_ent"
+    ],
+    "curve": [
+      {
+        "feature_set": "free",
+        "budget": 0,
+        "auc_roc": 0.9761659709415016,
+        "au_pr": 0.9917873421517993,
+        "recall_at_threshold": 0.5369030390738061
+      },
+      {
+        "feature_set": "free",
+        "budget": 1,
+        "auc_roc": 0.9821741106647093,
+        "au_pr": 0.9935937825958882,
+        "recall_at_threshold": 0.6280752532561505
+      },
+      {
+        "feature_set": "free",
+        "budget": 2,
+        "auc_roc": 0.9561980491831541,
+        "au_pr": 0.983674915737593,
+        "recall_at_threshold": 0.5151953690303908
+      },
+      {
+        "feature_set": "free",
+        "budget": 3,
+        "auc_roc": 0.9482516313405467,
+        "au_pr": 0.9806904422281963,
+        "recall_at_threshold": 0.5007235890014472
+      },
+      {
+        "feature_set": "free",
+        "budget": 4,
+        "auc_roc": 0.9319826338639653,
+        "au_pr": 0.9750773477538497,
+        "recall_at_threshold": 0.4211287988422576
+      },
+      {
+        "feature_set": "free",
+        "budget": 5,
+        "auc_roc": 0.9261939218523878,
+        "au_pr": 0.9719610184568905,
+        "recall_at_threshold": 0.21852387843704776
+      },
+      {
+        "feature_set": "free",
+        "budget": 6,
+        "auc_roc": 0.9266954709075426,
+        "au_pr": 0.9723541573897345,
+        "recall_at_threshold": 0.2706222865412446
+      },
+      {
+        "feature_set": "free",
+        "budget": 7,
+        "auc_roc": 0.9289106459011426,
+        "au_pr": 0.9732429970422738,
+        "recall_at_threshold": 0.2865412445730825
+      },
+      {
+        "feature_set": "free",
+        "budget": 8,
+        "auc_roc": 0.9201753331905312,
+        "au_pr": 0.9699233172822176,
+        "recall_at_threshold": 0.2575976845151954
+      },
+      {
+        "feature_set": "free",
+        "budget": 9,
+        "auc_roc": 0.9155934735929199,
+        "au_pr": 0.9679708275127159,
+        "recall_at_threshold": 0.22575976845151954
+      },
+      {
+        "feature_set": "free+costly",
+        "budget": 0,
+        "auc_roc": 0.9761659709415016,
+        "au_pr": 0.9917873421517993,
+        "recall_at_threshold": 0.5369030390738061
+      },
+      {
+        "feature_set": "free+costly",
+        "budget": 1,
+        "auc_roc": 0.9821741106647093,
+        "au_pr": 0.9935937825958882,
+        "recall_at_threshold": 0.6280752532561505
+      },
+      {
+        "feature_set": "free+costly",
+        "budget": 2,
+        "auc_roc": 0.9561980491831541,
+        "au_pr": 0.983674915737593,
+        "recall_at_threshold": 0.5151953690303908
+      },
+      {
+        "feature_set": "free+costly",
+        "budget": 3,
+        "auc_roc": 0.9482516313405467,
+        "au_pr": 0.9806904422281963,
+        "recall_at_threshold": 0.5007235890014472
+      },
+      {
+        "feature_set": "free+costly",
+        "budget": 4,
+        "auc_roc": 0.9319826338639653,
+        "au_pr": 0.9750773477538497,
+        "recall_at_threshold": 0.4211287988422576
+      },
+      {
+        "feature_set": "free+costly",
+        "budget": 5,
+        "auc_roc": 0.9261939218523878,
+        "au_pr": 0.9719610184568905,
+        "recall_at_threshold": 0.21852387843704776
+      },
+      {
+        "feature_set": "free+costly",
+        "budget": 6,
+        "auc_roc": 0.9266954709075426,
+        "au_pr": 0.9723541573897345,
+        "recall_at_threshold": 0.2706222865412446
+      },
+      {
+        "feature_set": "free+costly",
+        "budget": 7,
+        "auc_roc": 0.9289106459011426,
+        "au_pr": 0.9732429970422738,
+        "recall_at_threshold": 0.2865412445730825
+      },
+      {
+        "feature_set": "free+costly",
+        "budget": 8,
+        "auc_roc": 0.9201753331905312,
+        "au_pr": 0.9699233172822176,
+        "recall_at_threshold": 0.2575976845151954
+      },
+      {
+        "feature_set": "free+costly",
+        "budget": 9,
+        "auc_roc": 0.9155934735929199,
+        "au_pr": 0.9679708275127159,
+        "recall_at_threshold": 0.22575976845151954
+      },
+      {
+        "feature_set": "free+costly",
+        "budget": 10,
+        "auc_roc": 0.8898420642923195,
+        "au_pr": 0.9508183971274187,
+        "recall_at_threshold": 0.0
+      },
+      {
+        "feature_set": "free+costly",
+        "budget": 11,
+        "auc_roc": 0.8455124420736964,
+        "au_pr": 0.8977147377381787,
+        "recall_at_threshold": 0.0
+      },
+      {
+        "feature_set": "free+costly",
+        "budget": 12,
+        "auc_roc": 0.8474559446624208,
+        "au_pr": 0.8971853860724538,
+        "recall_at_threshold": 0.0
+      },
+      {
+        "feature_set": "free+costly",
+        "budget": 13,
+        "auc_roc": 0.8247190541620735,
+        "au_pr": 0.8963310810339493,
+        "recall_at_threshold": 0.0
+      }
+    ]
+  },
+  "shap": {
+    "model_explained": "CatBoost",
+    "global": [
+      {
+        "feature": "vman_author_ent",
+        "mean_abs_shap": 1.3250282197927146
+      },
+      {
+        "feature": "pit_n_maintainers",
+        "mean_abs_shap": 1.1285460279943869
+      },
+      {
+        "feature": "pit_has_repository",
+        "mean_abs_shap": 0.8837834894715834
+      },
+      {
+        "feature": "pit_n_keywords",
+        "mean_abs_shap": 0.8772372177208256
+      },
+      {
+        "feature": "pit_days_since_first",
+        "mean_abs_shap": 0.8306058079164567
+      },
+      {
+        "feature": "pit_author_email_domain_score",
+        "mean_abs_shap": 0.8001643839631805
+      },
+      {
+        "feature": "pit_median_gap_days",
+        "mean_abs_shap": 0.7781378142324782
+      },
+      {
+        "feature": "vman_description_len",
+        "mean_abs_shap": 0.6908110993369639
+      },
+      {
+        "feature": "vman_version_ent",
+        "mean_abs_shap": 0.5705358099516518
+      },
+      {
+        "feature": "pit_releases_30d",
+        "mean_abs_shap": 0.5094939041953762
+      },
+      {
+        "feature": "pit_description_entropy",
+        "mean_abs_shap": 0.40179962016225557
+      },
+      {
+        "feature": "pit_description_len",
+        "mean_abs_shap": 0.35533547079397576
+      },
+      {
+        "feature": "pit_ver_is_zero_major",
+        "mean_abs_shap": 0.353499696798254
+      },
+      {
+        "feature": "vman_description_ent",
+        "mean_abs_shap": 0.3318843299021323
+      },
+      {
+        "feature": "pit_std_gap_days",
+        "mean_abs_shap": 0.3166270082872475
+      },
+      {
+        "feature": "pit_n_dependencies",
+        "mean_abs_shap": 0.24031134415614752
+      },
+      {
+        "feature": "pit_name_n_hyphens",
+        "mean_abs_shap": 0.1915970989047134
+      },
+      {
+        "feature": "pit_n_dev_dependencies",
+        "mean_abs_shap": 0.17903964307758058
+      }
+    ],
+    "rank_stability_spearman": 0.791812865497076,
+    "agreement_permutation_spearman": 0.8018575851393188,
+    "local_examples": {
+      "FP": [],
+      "FN": [
+        {
+          "package": "awaitly-postgres",
+          "version": "0.1.1",
+          "score": 0.1413046041638008,
+          "top": {
+            "vman_author_ent": -2.7069,
+            "pit_n_keywords": 1.7949,
+            "vman_description_len": 1.1378,
+            "pit_median_gap_days": -0.8788,
+            "pit_author_email_domain_score": -0.7539
+          }
+        },
+        {
+          "package": "awaitly-postgres",
+          "version": "1.0.1",
+          "score": 0.09927241123066964,
+          "top": {
+            "vman_author_ent": -2.9224,
+            "pit_n_keywords": 1.9444,
+            "vman_description_len": 1.1238,
+            "pit_median_gap_days": -1.0629,
+            "pit_author_email_domain_score": -0.8304
+          }
+        },
+        {
+          "package": "awaitly-postgres",
+          "version": "10.0.1",
+          "score": 0.1621296703933654,
+          "top": {
+            "vman_author_ent": -2.8334,
+            "pit_n_keywords": 1.8906,
+            "vman_description_len": 1.1175,
+            "pit_median_gap_days": -0.8699,
+            "pit_author_email_domain_score": -0.8136
+          }
+        },
+        {
+          "package": "awaitly-postgres",
+          "version": "11.0.1",
+          "score": 0.13779398298015225,
+          "top": {
+            "vman_author_ent": -2.8411,
+            "pit_n_keywords": 1.8718,
+            "vman_description_len": 1.0816,
+            "pit_median_gap_days": -0.8784,
+            "pit_author_email_domain_score": -0.8213
+          }
+        },
+        {
+          "package": "awaitly-postgres",
+          "version": "12.0.1",
+          "score": 0.1884813634940361,
+          "top": {
+            "vman_author_ent": -2.7649,
+            "pit_n_keywords": 1.8308,
+            "vman_description_len": 1.0666,
+            "pit_author_email_domain_score": -0.8801,
+            "pit_median_gap_days": -0.8578
+          }
+        }
+      ]
+    }
+  },
+  "latency": {
+    "inference": {
+      "1": {
+        "median_ms": 1.3238855008239625,
+        "iqr_ms": 0.06581750130862929,
+        "n_repetitions": 30,
+        "batch_size": 1
+      },
+      "32": {
+        "median_ms": 1.3191154994274257,
+        "iqr_ms": 0.07855324838601518,
+        "n_repetitions": 30,
+        "batch_size": 32
+      },
+      "256": {
+        "median_ms": 1.609193997865077,
+        "iqr_ms": 0.3469997527645319,
+        "n_repetitions": 30,
+        "batch_size": 256
+      }
+    },
+    "registry_fetch_and_feature_extraction": {
+      "median_ms": 171.1281260013493,
+      "iqr_ms": 99.32680699876073,
+      "n_repetitions": 20
+    },
+    "note": "la latence bout-en-bout est dominee par l'acces au registre, pas par l'inference ; ne pas en conclure une capacite temps reel"
+  },
+  "calibration": {
+    "brier": 0.06891083861020779,
+    "ece_10bins": 0.09665684235626597,
+    "curve": [
+      {
+        "mean_predicted": 0.00014742022528510345,
+        "observed_fraction": 0.07216494845360824
+      },
+      {
+        "mean_predicted": 0.0019219023126264016,
+        "observed_fraction": 0.08247422680412371
+      },
+      {
+        "mean_predicted": 0.021321597049927116,
+        "observed_fraction": 0.21649484536082475
+      },
+      {
+        "mean_predicted": 0.4175703551500409,
+        "observed_fraction": 0.78125
+      },
+      {
+        "mean_predicted": 0.8433143907190961,
+        "observed_fraction": 0.9896907216494846
+      },
+      {
+        "mean_predicted": 0.9278446573382221,
+        "observed_fraction": 1.0
+      },
+      {
+        "mean_predicted": 0.9738094600633906,
+        "observed_fraction": 1.0
+      },
+      {
+        "mean_predicted": 0.9931642605322376,
+        "observed_fraction": 1.0
+      },
+      {
+        "mean_predicted": 0.9984816536410358,
+        "observed_fraction": 1.0
+      },
+      {
+        "mean_predicted": 0.9996951775676154,
+        "observed_fraction": 1.0
+      }
+    ]
+  },
+  "robustness": {
+    "label_noise_10pct": {
+      "definition": "10% des etiquettes d'ENTRAINEMENT inversees uniformement",
+      "n_repetitions": 10,
+      "auc_roc_median": 0.9521647588646183,
+      "auc_roc_iqr": 0.012265747856661569,
+      "au_pr_median": 0.980484573843708,
+      "au_pr_iqr": 0.00487223478319132
+    },
+    "feature_corruption_20pct": {
+      "definition": "20% des valeurs de TEST remplacees par un tirage dans la marginale d'entrainement de la meme feature",
+      "n_repetitions": 10,
+      "auc_roc_median": 0.9331581394619841,
+      "auc_roc_iqr": 0.010396693955811553,
+      "au_pr_median": 0.9719148601733457,
+      "au_pr_iqr": 0.0044071072055758
+    }
+  },
+  "maturity_matched": {
+    "auc_roc": 0.9669489383215368,
+    "au_pr": 0.9688817632647517,
+    "au_pr_baseline": 0.5168539325842697,
+    "n_train": 898,
+    "n_test": 356,
+    "n_test_malicious": 184,
+    "unmatched_reference": {
+      "auc_roc": 0.9761659709415016,
+      "au_pr": 0.9917873421517993
+    },
+    "n_pairs": 627
+  },
+  "generated_at": "2026-08-09T15:11:25.378286+00:00"
+}
