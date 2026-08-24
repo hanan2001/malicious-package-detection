@@ -1,8 +1,0 @@
-stage,protocol_A,protocol_B
-initial,464,40
-variance,145,40
-mutual_info,100,40
-boruta,85,38
-rfe,30,30
-corr_prune,25,26
-budget,18,18

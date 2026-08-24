@@ -1,0 +1,3 @@
+experiment,definition,n_repetitions,auc_roc_median,auc_roc_iqr,au_pr_median,au_pr_iqr
+label_noise_10pct,10% of TRAINING labels inverted uniformly at random,10,0.9585960806031126,0.009750165876901029,0.9850721713468217,0.004152065328171695
+feature_corruption_20pct,20% of TEST values replaced by draws from the training marginal of the same attribute,10,0.9331581394619841,0.010396693955811553,0.9719148601733457,0.0044071072055758

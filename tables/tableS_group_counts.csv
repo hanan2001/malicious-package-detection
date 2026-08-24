@@ -1,0 +1,13 @@
+split,ecosystem,label,versions,packages,groups
+test,npm,presumed_benign,95,95,79
+test,npm,malicious,668,159,112
+test,pypi,presumed_benign,182,182,174
+test,pypi,malicious,23,10,10
+train,npm,presumed_benign,258,258,188
+train,npm,malicious,965,349,283
+train,pypi,presumed_benign,443,443,408
+train,pypi,malicious,47,17,17
+val,npm,presumed_benign,60,60,48
+val,npm,malicious,459,117,60
+val,pypi,presumed_benign,121,121,114
+val,pypi,malicious,9,3,3

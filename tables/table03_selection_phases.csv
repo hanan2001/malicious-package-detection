@@ -1,0 +1,9 @@
+phase,method,in_out,reduction_pct
+0,Ecosystem proxy removal (a priori exclusion),456 -> 40,91.2
+1,Variance threshold,40 -> 40,
+2,Mutual information,40 -> 40,
+3,Boruta,40 -> 38,
+4,RFE (CatBoost),38 -> 30,
+5,Correlation pruning,30 -> 26,
+6,"Feature budget (18, a priori)",26 -> 18,
+data-driven total,Phases 1-6,40 -> 18,55.0
